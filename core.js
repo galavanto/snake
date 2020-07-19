@@ -1,4 +1,4 @@
-let Game = {
+let Core = {
 
     interval: 1000 / 15,
     paused: false,
@@ -7,6 +7,7 @@ let Game = {
         window.setInterval(this.core, this.interval);
         this.drawCanvas();
         this.bindKeys();
+        Snake.init();
     },
     bindKeys: function () {
         window.addEventListener("keydown", this.hitKey);
@@ -69,7 +70,7 @@ let Game = {
         // Cancel the default action to avoid it being handled twice
         event.preventDefault();
     },
-    showPauseMenu: function(){
+    showPauseMenu: function () {
 
     }
 };
