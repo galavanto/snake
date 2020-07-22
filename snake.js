@@ -1,34 +1,33 @@
 let Snake = {
     length: 3,
-    x: 0,
-    y: 0,
+    start: true,
     gameCanvas: null,
     gameCanvasContext: null,
-    snakeGap: 2,
-    startX: 300,
-    startY: 300,
+    snakeGap: 1,
+    startX: 200,  // max is 290
+    startY: 100,   // max is 145, min is
+    blocks: [],
 
     init: function () {
-        console.log('test');
-        this.gameCanvas = document.getElementById('gameCanvas');
-        this.gameCanvasContext = this.gameCanvas.getContext('2d');
-
         this.drawSnake();
-
     },
-    drawSnake: function (startX, startY) {
-        for (let i = 0; i > this.length; i++) {
-            this.determinePosition();
+    drawSnake: function () {
+        for (let i = 0; i < this.length; i++) {
+            this.drawBlocks();
         }
     },
-    drawBlock: function (x, y) {
-        this.gameCanvasContext.beginPath();
-        this.gameCanvasContext.rect(5, 5, 10, 5);
-        this.gameCanvasContext.fillStyle = "green";
-        this.gameCanvasContext.fill();
-    },
-    determinePosition: function (x,y) {
+    drawBlocks: function () {
+        let amountOfBlocks = this.blocks.length;
 
+        if (amountOfBlocks === 0) {
+            Snake.blocks.push(Block.drawBlock(this.startX, this.startY));
+        }
+
+        if (amountOfBlocks === this.length - 1) {
+            Snake.blocks.push(Block.drawBlock(this.startX, this.startY,true));
+        }
+
+        Snake.blocks.push(Block.drawBlock(this.startX, this.startY + 6));
     }
 
 };

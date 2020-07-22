@@ -2,6 +2,8 @@ let Core = {
 
     interval: 1000 / 15,
     paused: false,
+    gameCanvas: null,
+    gameCanvasContext: null,
 
     init: function () {
         window.setInterval(this.core, this.interval);
@@ -15,11 +17,14 @@ let Core = {
     drawCanvas: function () {
         let canvas = document.createElement('canvas');
         canvas.id = 'gameCanvas';
-        canvas.style.width = "500px";
-        canvas.style.height = "500px";
+        canvas.style.width = "500";
+        canvas.style.height = "500";
         canvas.style.backgroundColor = "black";
 
         document.body.appendChild(canvas);
+
+        this.gameCanvas = document.getElementById('gameCanvas');
+        this.gameCanvasContext = this.gameCanvas.getContext('2d');
     },
     core: function () {
         if (this.paused) {
